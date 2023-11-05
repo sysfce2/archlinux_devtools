@@ -213,10 +213,26 @@ _chrootbuild() {
 	# use "$" in arguments to commands with "sudo -i".  ${foo} or
 	# ${1} is OK, but $foo or $1 isn't.
 	# https://bugzilla.sudo.ws/show_bug.cgi?id=765
+
+	# Run prepare
 	sudo --preserve-env=SOURCE_DATE_EPOCH \
 		--preserve-env=BUILDTOOL \
 		--preserve-env=BUILDTOOLVER \
-		-iu builduser bash -c 'cd /startdir; makepkg "$@"' -bash "$@"
+		-iu builduser bash -c 'cd /startdir; makepkg --nobuild "$@"' -bash "$@"
+
+	# Build offline
+	unshare -n -- sudo --preserve-env=SOURCE_DATE_EPOCH \
+		--preserve-env=BUILDTOOL \
+		--preserve-env=BUILDTOOLVER \
+		-iu builduser \
+		bash -c 'cd /startdir; makepkg --noprepare --noextract --nocheck "$@"' -bash "$@"
+
+	# Run tests online
+	sudo --preserve-env=SOURCE_DATE_EPOCH \
+		--preserve-env=BUILDTOOL \
+		--preserve-env=BUILDTOOLVER \
+		-iu builduser \
+		bash -c 'cd /startdir; makepkg --noprepare --noextract --nobuild "$@"' -bash "$@"
 	ret=$?
 	case $ret in
 		0|14)
