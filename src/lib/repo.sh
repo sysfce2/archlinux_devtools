@@ -91,6 +91,14 @@ pkgctl_repo() {
 				pkgctl_repo_switch "$@"
 				exit 0
 				;;
+			pull)
+				_DEVTOOLS_COMMAND+=" $1"
+				shift
+				# shellcheck source=src/lib/repo/pull.sh
+				source "${_DEVTOOLS_LIBRARY_DIR}"/lib/repo/pull.sh
+				pkgctl_repo_pull "$@"
+				exit 0
+				;;
 			web)
 				_DEVTOOLS_COMMAND+=" $1"
 				shift
