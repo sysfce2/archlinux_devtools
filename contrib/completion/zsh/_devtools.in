@@ -49,6 +49,7 @@ _pkgctl_build_args=(
 	'(-s --staging)'{-s,--staging}'[Build against the staging counterpart of the auto-detected repo]'
 	'(-t --testing)'{-t,--testing}'[Build against the testing counterpart of the auto-detected repo]'
 	'(-o --offload)'{-o,--offload}'[Build on a remote server and transfer artifacts afterwards]'
+	"--offload-host[Specify an alternative offload host (default: build.archlinux.org)]:host:"
 	'(-c --clean)'{-c,--clean}'[Recreate the chroot before building]'
 	"--inspect[Spawn an interactive shell to inspect the chroot (never, always, failure)]:inspect:($DEVTOOLS_VALID_INSPECT_MODES[*])"
 	'*'{-I,--install-to-chroot}'[Install a package to the working copy of the chroot]:target:_files -g "*.pkg.tar.*(.)"'

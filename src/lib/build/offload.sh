@@ -77,8 +77,8 @@ pkgctl_build_offload_client() {
 	local pkgbase=$1
 	local pkgrepo=$2
 	local pkgarch=$3
-	shift 3
-	local server=build.archlinux.org
+	local server=$4
+	shift 4
 	# shellcheck disable=SC2031
 	local working_dir=$PWD
 	local _srcpkg srcpkg files

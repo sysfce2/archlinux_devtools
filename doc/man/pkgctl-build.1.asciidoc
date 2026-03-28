@@ -38,6 +38,9 @@ Build Options
 *-o, --offload*::
 	Build on a remote server and transfer artifacts afterwards
 
+*--offload-host* 'HOST'::
+	Specify offload target machine (default: build.archlinux.org)
+
 *-c, --clean*::
 	Recreate the chroot before building
 

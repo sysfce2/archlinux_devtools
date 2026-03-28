@@ -56,6 +56,7 @@ pkgctl_build_usage() {
 		    -s, --staging        Build against the staging counterpart of the auto-detected repo
 		    -t, --testing        Build against the testing counterpart of the auto-detected repo
 		    -o, --offload        Build on a remote server and transfer artifacts afterwards
+		    --offload-host HOST  Specify offload target machine (default: build.archlinux.org)
 		    -c, --clean          Recreate the chroot before building
 		    --inspect WHEN       Spawn an interactive shell to inspect the chroot (never, always, failure)
 		    -w, --worker SLOT    Name of the worker slot, useful for concurrent builds (disables automatic names)
@@ -122,6 +123,7 @@ pkgctl_build() {
 	local EDIT=0
 	local REBUILD=0
 	local OFFLOAD=0
+	local OFFLOAD_HOST=build.archlinux.org
 	local STAGING=0
 	local TESTING=0
 	local RELEASE=0
@@ -204,6 +206,11 @@ pkgctl_build() {
 			-o|--offload)
 				OFFLOAD=1
 				shift
+				;;
+			--offload-host)
+				(( $# <= 1 )) && die "missing argument for %s" "$1"
+				OFFLOAD_HOST="$2"
+				shift 2
 				;;
 			-s|--staging)
 				pkgctl_build_check_option_group_repo '--staging' "${REPO}" "${TESTING}" "${STAGING}"
@@ -466,7 +473,7 @@ pkgctl_build() {
 			fi
 
 			if (( OFFLOAD )); then
-				pkgctl_build_offload_client "${pkgbase}" "${pkgrepo}" "${arch}" "${BUILD_OPTIONS[@]}" -- "${MAKECHROOT_OPTIONS[@]}" -l "${WORKER}" -- "${MAKEPKG_OPTIONS[@]}"
+				pkgctl_build_offload_client "${pkgbase}" "${pkgrepo}" "${arch}" "${OFFLOAD_HOST}" "${BUILD_OPTIONS[@]}" -- "${MAKECHROOT_OPTIONS[@]}" -l "${WORKER}" -- "${MAKEPKG_OPTIONS[@]}"
 			else
 				"${BUILDTOOL}" "${BUILD_OPTIONS[@]}" -- "${MAKECHROOT_OPTIONS[@]}" -l "${WORKER}" -- "${MAKEPKG_OPTIONS[@]}"
 			fi

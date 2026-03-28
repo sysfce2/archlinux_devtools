@@ -171,6 +171,7 @@ _pkgctl_build_args=(
 	-s --staging
 	-t --testing
 	-o --offload
+	--offload-host
 	-c --clean
 	-w --worker
 	--inspect
@@ -191,6 +192,7 @@ _pkgctl_build_args=(
 )
 _pkgctl_build_args__arch_opts() { _devtools_completions_binary_arch; }
 _pkgctl_build_args__repo_opts() { _devtools_completions_repo; }
+_pkgctl_build_args__offload_host_opts() { :; }
 _pkgctl_build_args__worker_opts() { :; }
 _pkgctl_build_args_w_opts() { _pkgctl_build_args__worker_opts; }
 _pkgctl_build_args__inspect_opts() { _devtools_completions_inspect; }
