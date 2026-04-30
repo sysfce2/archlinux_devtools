@@ -56,7 +56,7 @@ COMPLETIONS = $(addprefix $(BUILDDIR)/,$(patsubst %.in,%,$(wildcard contrib/comp
 CASES ?= test/case
 JOBS ?= $(shell nproc)
 BATS_EXTRA_ARGS ?=
-BATS_ARGS ?= --jobs $(JOBS) $(BATS_EXTRA_ARGS) --verbose-run
+BATS_ARGS ?= --jobs $(JOBS) $(BATS_EXTRA_ARGS) --verbose-run --recursive
 COVERAGE_DIR ?= $(BUILDDIR)/coverage
 
 
