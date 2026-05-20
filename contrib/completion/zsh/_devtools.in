@@ -160,6 +160,7 @@ _pkgctl_issue_list_args=(
 	'(-A --all)'{-A,--all}'[Get all issues including closed]'
 	'(-c --closed)'{-c,--closed}'[Get only closed issues]'
 	'(-U --unconfirmed)'{-U,--unconfirmed}'[Shorthand to filter by unconfirmed status label]'
+	'(-l --label)'{-l,--label}'[Filter issue by label]:name:'
 	'--search[Search in the fields defined by --in]:search:'
 	"--in[Search in title or description]:location:($DEVTOOLS_VALID_ISSUE_SEARCH_LOCATION[*])"
 	"--confidentiality[Filter by confidentiality]:confidential:($DEVTOOLS_VALID_ISSUE_CONFIDENTIALITY[*])"
