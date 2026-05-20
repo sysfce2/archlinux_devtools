@@ -434,7 +434,7 @@ _pkgctl_diff_args=(
 	-d --diffoscope
 	-p --pkginfo
 	-b --buildinfo
-	-m --makepkg-config
+	-M --makepkg-config
 	-u -U --unified
 	-y --side-by-side
 	--color
@@ -444,7 +444,7 @@ _pkgctl_diff_args=(
 	-h --help
 )
 _pkgctl_diff_args__makepkg_config_opts() { _filedir '*.conf'; }
-_pkgctl_diff_args_m_opts() { _pkgctl_diff_args__makepkg_config_opts; }
+_pkgctl_diff_args_M_opts() { _pkgctl_diff_args__makepkg_config_opts; }
 _pkgctl_diff_args__width_opts() { :; }
 _pkgctl_diff_args_W_opts() { _pkgctl_diff_args__width_opts; }
 _pkgctl_diff_args__color_opts() { _devtools_completions_color; }
