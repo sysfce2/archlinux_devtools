@@ -81,7 +81,7 @@ pkgctl_issue_close() {
 				edit=1
 				shift
 				;;
-			--resolution)
+			-r|--resolution)
 				(( $# <= 1 )) && die "missing argument for %s" "$1"
 				if ! label="$(resolution_as_gitlab_label "$2")"; then
 					die "invalid argument for %s: %s" "$1" "$2"
