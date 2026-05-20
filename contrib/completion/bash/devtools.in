@@ -182,6 +182,7 @@ _pkgctl_build_args=(
 	--pkgrel
 	--rebuild
 	--update-checksums
+	--nocheck
 	-e --edit
 
 	-r --release
